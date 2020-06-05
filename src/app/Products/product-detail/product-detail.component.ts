@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
 
 @Component({
@@ -11,7 +11,8 @@ export class ProductDetailComponent implements OnInit {
   product: IProduct | undefined;
 
   constructor(private route: ActivatedRoute,
-              private productService: ProductService) { }
+              private productService: ProductService,
+              private router: Router) { }
 
   ngOnInit() {
     const param = this.route.snapshot.paramMap.get('id');
@@ -25,5 +26,9 @@ export class ProductDetailComponent implements OnInit {
       next: product => this.product = product,
       error: err => this.errorMessage = err
     });
+  }
+  onBackClick()
+  {
+    this.router.navigate(['/products']);
   }
 }
