@@ -7,6 +7,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angu
 })
 export class StarComponent implements OnInit, OnChanges {
 
+  starWidth:number;
   @Input() rating: number;
   @Output() ratingClicked: EventEmitter<string> = new EventEmitter<string>(); 
 
