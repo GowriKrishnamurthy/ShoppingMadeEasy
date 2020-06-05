@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { IProduct } from './product';
+import { IProduct } from './product'; import { findLast } from '@angular/compiler/src/directive_resolver';
+
 import { pipe } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -11,13 +12,21 @@ import { catchError, tap, map } from 'rxjs/operators';
 export class ProductService {
 
   private productUrl = 'assets/products/products.json';
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  getProducts(): Observable<IProduct[]>{
+  getProducts(): Observable<IProduct[]> {
     return this.httpClient.get<IProduct[]>(this.productUrl).pipe(
-      tap(data=>console.log('All; '+ JSON.stringify(data))),
+      tap(data => console.log('All; ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
+  }
+
+  getProductById(productId: number): Observable<IProduct | undefined> {
+    return this.getProducts()
+      .pipe(
+        map((products: IProduct[]) => products.find(p => p.productId === productId)),
+        catchError(this.handleError)
+      );
   }
 
   private handleError(err: HttpErrorResponse) {
