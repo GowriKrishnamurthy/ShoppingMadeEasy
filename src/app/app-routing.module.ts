@@ -4,19 +4,17 @@ import { ProductListComponent } from './Products/product-list/product-list.compo
 import { ProductDetailComponent } from './Products/product-detail/product-detail.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ProductDetailGuard } from './Products/product-detail.guard';
+import { ProductModule } from './Products/product.module';
 
 const routes: Routes = [
-      { path:'products', component:ProductListComponent},
-      { path:'products/:id',
-            canActivate:[ProductDetailGuard], 
-            component:ProductDetailComponent},
       { path:'welcome', component:WelcomeComponent},
       { path:'', redirectTo:'welcome', pathMatch:'full'},
       { path:'**', redirectTo:'welcome', pathMatch:'full'},
       ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [ProductModule,
+            RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
