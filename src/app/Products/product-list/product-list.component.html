@@ -69,6 +69,12 @@
                                 (ratingClicked)='onRatingClicked($event)'
                             ></app-star>
                         </td>
+                        <td>
+                            <button class="btn btn-outline-primary btn-sm"
+                                    [routerLink]="['/products', product.productId, 'edit']">
+                              Edit
+                            </button>
+                          </td>
                     </tr>
                 </tbody>
             </table>
