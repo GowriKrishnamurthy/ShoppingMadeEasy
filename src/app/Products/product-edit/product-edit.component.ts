@@ -6,9 +6,7 @@ import { ProductService } from '../product.service';
 import { NumberValidators } from '../../common/number.validator';
 import { Subscription, Observable, fromEvent, merge } from 'rxjs';
 import { GenericValidator } from '../../common/generic-validator';
-import { debounceTime } from 'rxjs/operators';
-import { HttpHeaders } from '@angular/common/http';
-
+import { debounceTime } from 'rxjs/operators'; 
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',

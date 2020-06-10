@@ -5,10 +5,10 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { IProduct } from './product'; 
 
 const crudOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+
 @Injectable({
   providedIn: 'root'
 })
-
 
 export class ProductService {
 
@@ -18,7 +18,7 @@ export class ProductService {
 
   getProducts(): Observable<IProduct[]> {
     return this.httpClient.get<IProduct[]>(this.productUrl).pipe(
-      // tap(data => console.log('All; ' + JSON.stringify(data))),
+      tap(data => console.log('All; ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
@@ -30,7 +30,7 @@ export class ProductService {
     const url = `${this.productUrl}/${productId}`;
     return this.httpClient.get<IProduct>(url)
       .pipe(
-        // tap(data => console.log('getProduct: ' + JSON.stringify(data))),
+        tap(data => console.log('getProduct: ' + JSON.stringify(data))),
         catchError(this.handleError)
       );
   }  
