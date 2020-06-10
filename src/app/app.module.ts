@@ -13,9 +13,9 @@ import { ProductModule } from './Products/product.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,        
     ProductModule,
-    AppRoutingModule,
-    HttpClientModule,    
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
