@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ProductData } from './product-data';
+import { ProductEditGuard } from './product-edit.guard';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
         component:ProductDetailComponent},
   {
         path: 'products/:id/edit',
+        canDeactivate: [ProductEditGuard],
         component:ProductEditComponent},
   ];
 
