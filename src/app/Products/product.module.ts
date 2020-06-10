@@ -5,8 +5,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProductDetailGuard } from './product-detail.guard';
 import { SharedModule } from '../common/shared.module';
 import { ProductEditComponent } from './product-edit/product-edit.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+// Imports for loading & configuring the in-memory web api
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { ProductData } from './product-data';
+
 
 const routes: Routes = [
   { path:'products', component:ProductListComponent},
@@ -23,12 +27,11 @@ const routes: Routes = [
     ProductListComponent,
     ProductDetailComponent,
     ProductEditComponent],
-  imports: [
-    RouterModule.forChild(routes),
-    BrowserModule,
-    FormsModule,
+  imports: [    
     ReactiveFormsModule,
-    SharedModule
+    InMemoryWebApiModule.forRoot(ProductData),
+    SharedModule,
+    RouterModule.forChild(routes)
   ]
 })
 export class ProductModule { }
